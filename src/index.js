@@ -1,9 +1,9 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 
-import App from "./App";
+import App from "./functionBased/components/TodoContainer";
 
-import "./App.css";
+import "./functionBased/App.css";
 
 const rootElement = document.getElementById("root");
 const root = createRoot(rootElement);
