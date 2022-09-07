@@ -48,6 +48,21 @@ const TodoContainer = () => {
     );
   };
 
+  useEffect(() => {
+    const temp = localStorage.getItem("todos");
+    const loadedTodos = JSON.parse(temp);
+
+    if (loadedTodos) {
+      setTodos(loadedTodos);
+    }
+  }, [setTodos]);
+
+  useEffect(() => {
+    //saving todos items
+    const temp = JSON.stringify(todos);
+    localStorage.setItem("todos", temp);
+  }, [todos]);
+
   return (
     <div className="container">
       <div className="inner">
