@@ -4,7 +4,14 @@ import Header from "./Header";
 import InputTodo from "./InputTodo";
 import { v4 as uuidv4 } from "uuid";
 const TodoContainer = () => {
-  const [todos, setTodos] = useState([]);
+  const getInitialTodos = () => {
+    //getting stored todos
+    const temp = localStorage.getItem("todos");
+    const savedTodos = JSON.parse(temp);
+    return savedTodos || [];
+  };
+
+  const [todos, setTodos] = useState(getInitialTodos());
 
   const handleChange = (id) => {
     setTodos((prevState) =>
@@ -47,15 +54,6 @@ const TodoContainer = () => {
       })
     );
   };
-
-  useEffect(() => {
-    const temp = localStorage.getItem("todos");
-    const loadedTodos = JSON.parse(temp);
-
-    if (loadedTodos) {
-      setTodos(loadedTodos);
-    }
-  }, [setTodos]);
 
   useEffect(() => {
     //saving todos items
